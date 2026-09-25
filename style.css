@@ -1,0 +1,309 @@
+/* =========================================
+   全局与变量设置
+========================================= */
+:root {
+    --bg-color: #f7f1e7;      /* 暖白宣纸底色 */
+    --text-main: #2B2B2B;     /* 墨黑正文 */
+    --text-sec: #7A6E65;      /* 烟灰辅助色 */
+    
+    /* 四大板块主题色 */
+    --color-prehistoric: #B85233; /* 赤陶红 */
+    --color-ancient: #C27D2C;     /* 青铜金 */
+    --color-imperial: #A61C1C;    /* 朱砂红 */
+    --color-modern: #8C1D40;      /* 绛紫红 */
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    /* 全局主字体 Cormorant */
+    font-family: 'Cormorant', 'Georgia', serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* =========================================
+   主标题样式
+========================================= */
+.main-title-container {
+    text-align: center;
+    margin-top: 80px;
+    margin-bottom: -20px; 
+    padding: 0 20px;
+}
+.main-site-title {
+    font-size: 46px;
+    letter-spacing: 8px;
+    color: var(--text-main);
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+/* =========================================
+   前言、结语与时间轴小标题 (独立居中，格式完全统一)
+========================================= */
+.preface, .epilogue {
+    max-width: 600px;
+    margin: 80px auto;
+    text-align: center;
+    padding: 0 20px;
+}
+.chronicles-title {
+    text-align: center;
+    margin-bottom: 40px; /* 调整与时间轴主体的呼吸感间距 */
+    padding: 0 20px;
+}
+.preface h1, .epilogue h1, .chronicles-title h1 {
+    font-size: 24px;
+    letter-spacing: 4px;
+    color: var(--text-sec);
+    margin-bottom: 20px;
+}
+.preface p, .epilogue p {
+    font-family: 'Georgia', serif; 
+    font-size: 16px;
+    color: var(--text-main);
+    font-style: normal;
+}
+
+/* =========================================
+   核心时间轴容器
+========================================= */
+.timeline-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* =========================================
+   板块定义与自适应渐变粗轴 (无缝完美过渡)
+========================================= */
+.timeline-section {
+    position: relative;
+    padding-left: 80px;  /* 给粗轴和引出线留出空间 */
+}
+
+/* 巧妙修改 2：给第一个板块增加 padding-top 即可让第一截粗轴留出完美的顶部引导线距离 */
+.theme-prehistoric { 
+    --theme-color: var(--color-prehistoric); 
+    padding-top: 7px; /* 让首个节点自然向下偏移，不再紧贴时间轴顶部圆头 */
+}
+.theme-ancient { --theme-color: var(--color-ancient); }
+.theme-imperial { --theme-color: var(--color-imperial); }
+.theme-modern { --theme-color: var(--color-modern); }
+
+.axis-line {
+    position: absolute;
+    left: 20px; 
+    top: 0; 
+    bottom: 0;
+    width: 14px; 
+    background: var(--theme-color);
+}
+
+.top-rounded {
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+}
+.bottom-rounded {
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+}
+
+/* 渐变过渡距离调平为 80px，紧贴在上一个朝代结束与新朝代开始之间的等距留白内 */
+.transition-ancient { background: linear-gradient(to bottom, var(--color-prehistoric) 0%, var(--color-ancient) 80px, var(--color-ancient) 100%); }
+.transition-imperial { background: linear-gradient(to bottom, var(--color-ancient) 0%, var(--color-imperial) 80px, var(--color-imperial) 100%); }
+.transition-modern { background: linear-gradient(to bottom, var(--color-imperial) 0%, var(--color-modern) 80px, var(--color-modern) 100%); }
+
+/* =========================================
+   条目样式 (无框线画卷排版，完美等距)
+========================================= */
+.timeline-item {
+    position: relative;
+    padding-bottom: 60px; /* 使用 padding 替代 margin 撑开距离，完美闭合轴线 */
+}
+
+/* 整个时间轴最后一条收尾间距 */
+.theme-modern .timeline-item:last-child {
+    padding-bottom: 30px; 
+}
+
+.timeline-item .node {
+    position: absolute;
+    left: -64px; 
+    top: 8px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-color: var(--theme-color);
+    box-shadow: 0 0 0 4px var(--bg-color); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    z-index: 2;
+    will-change: transform; /* 新增：提示浏览器提前提升渲染层，消除亚像素抖动 */
+}
+
+.timeline-item .lead-line {
+    position: absolute;
+    left: -46px; 
+    top: 18px;
+    width: 35px;
+    height: 2px;
+    background-color: var(--theme-color);
+    opacity: 0.7;
+}
+
+.timeline-item .content {
+    transition: transform 0.3s ease;
+}
+
+.timeline-item .title {
+    font-size: 26px; 
+    font-weight: 700;
+    color: var(--text-main);
+    transition: color 0.3s ease;
+}
+.timeline-item .cn-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 20px;
+    color: var(--theme-color); 
+}
+.timeline-item .time {
+    /* 修改项 3：时间文本全部替换为 Cinzel */
+    font-family: 'Cinzel', serif;
+    font-size: 15px;
+    color: var(--text-sec);
+    letter-spacing: 1px;
+    margin-top: 4px;
+    margin-bottom: 12px;
+    font-weight: 700;
+}
+.timeline-item .summary {
+    font-family: 'Georgia', serif;
+    font-size: 15px;
+    color: #4A4A4A;
+    max-width: 600px;
+}
+
+.timeline-item .read-more {
+    display: inline-block;
+    margin-top: 14px;
+    /* 修改项 3：Read More 文本全部替换为 Cinzel */
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--theme-color);
+    text-decoration: underline;
+    text-underline-offset: 5px;
+    cursor: pointer;
+}
+.timeline-item .arrow {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+/* =========================================
+   交互与悬停反馈
+========================================= */
+.timeline-item:hover .node {
+    transform: scale(1.2);
+    /* 同时保留 4px 背景隔离环 + 叠加 12px 主题色发光 */
+    box-shadow: 0 0 0 4px var(--bg-color), 0 0 12px var(--theme-color);
+}
+.timeline-item:hover .title {
+    color: var(--theme-color); 
+}
+.timeline-item:hover .arrow {
+    transform: translateX(6px); 
+}
+
+/* =========================================
+   纯 CSS 弹窗交互 (无 JS)
+========================================= */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(247, 241, 231, 0.85); 
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+    z-index: 100;
+}
+
+/* 核心魔法：当鼠标点击 Read More 导致网址带有对应 #ID 时，自动显示该弹窗 */
+.modal-overlay:target {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-box {
+    background-color: #FFFFFF;
+    width: 90%;
+    max-width: 650px;
+    max-height: 80vh; /* 防止文字过长撑爆屏幕，最高占屏幕 80% */
+    overflow-y: auto; /* 文字超出范围自动出现滚动条 */
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    position: relative;
+    transform: translateY(20px);
+    transition: transform 0.4s ease;
+    font-family: 'Georgia', serif; 
+}
+
+/* 滚动条美化 (在电脑上滑动更优雅) */
+.modal-box::-webkit-scrollbar { width: 6px; }
+.modal-box::-webkit-scrollbar-thumb { background: #d4cec4; border-radius: 4px; }
+
+.modal-overlay:target .modal-box {
+    transform: translateY(0);
+}
+
+.modal-close {
+    position: absolute;
+    top: 20px; right: 25px;
+    font-size: 24px;
+    color: var(--text-sec);
+    text-decoration: none; /* 去掉 <a> 标签自带的下划线 */
+    cursor: pointer;
+    transition: color 0.2s;
+    font-family: sans-serif;
+}
+.modal-close:hover {
+    color: var(--color-imperial);
+}
+.modal-box h2 {
+    font-family: 'Cormorant', serif;
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: var(--color-imperial);
+}
+
+/* 真实的图片样式 */
+.modal-image {
+    width: 100%;
+    height: 240px;
+    object-fit: cover; /* 核心：图片自动按比例完美裁切并填满相框，绝对不拉伸变形 */
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.modal-text {
+    margin-top: 20px;
+    color: #2B2B2B;
+    line-height: 1.8;
+}
+.modal-text p {
+    margin-bottom: 15px; /* 每段文字之间的呼吸间距 */
+}
+
+/* 当有任意弹窗被激活时，锁定网页主体的滚动条 */
+body:has(.modal-overlay:target) {
+    overflow: hidden;
+}
