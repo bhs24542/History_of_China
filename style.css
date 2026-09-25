@@ -301,7 +301,7 @@ body {
     margin-bottom: 15px; 
 }
 
-/* 当有任意弹窗被激活时，锁定网页主体的滚动条 */
+/* 当有任意弹窗被激活时，锁定网页主的滚动条 */
 body:has(.modal-overlay:target) {
     overflow: hidden;
 }
