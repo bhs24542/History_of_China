@@ -234,7 +234,7 @@ body {
     z-index: 100;
 }
 
-/* 核心魔法：当鼠标点击 Read More 导致网址带有对应 #ID 时，自动显示该弹窗 */
+/* 显示弹窗 */
 .modal-overlay:target {
     opacity: 1;
     visibility: visible;
@@ -244,8 +244,8 @@ body {
     background-color: #FFFFFF;
     width: 90%;
     max-width: 650px;
-    max-height: 80vh; /* 防止文字过长撑爆屏幕，最高占屏幕 80% */
-    overflow-y: auto; /* 文字超出范围自动出现滚动条 */
+    max-height: 80vh; 
+    overflow-y: auto; 
     padding: 40px;
     border-radius: 8px;
     box-shadow: 0 20px 40px rgba(0,0,0,0.1);
@@ -255,7 +255,7 @@ body {
     font-family: 'Georgia', serif; 
 }
 
-/* 滚动条美化 (在电脑上滑动更优雅) */
+/* 滚动条美化 */
 .modal-box::-webkit-scrollbar { width: 6px; }
 .modal-box::-webkit-scrollbar-thumb { background: #d4cec4; border-radius: 4px; }
 
@@ -268,7 +268,7 @@ body {
     top: 20px; right: 25px;
     font-size: 24px;
     color: var(--text-sec);
-    text-decoration: none; /* 去掉 <a> 标签自带的下划线 */
+    text-decoration: none; 
     cursor: pointer;
     transition: color 0.2s;
     font-family: sans-serif;
@@ -283,11 +283,11 @@ body {
     color: var(--color-imperial);
 }
 
-/* 真实的图片样式 */
+/* 图片样式 */
 .modal-image {
     width: 100%;
     height: 240px;
-    object-fit: cover; /* 核心：图片自动按比例完美裁切并填满相框，绝对不拉伸变形 */
+    object-fit: cover; 
     border-radius: 4px;
     margin-bottom: 20px;
 }
@@ -298,7 +298,7 @@ body {
     line-height: 1.8;
 }
 .modal-text p {
-    margin-bottom: 15px; /* 每段文字之间的呼吸间距 */
+    margin-bottom: 15px; 
 }
 
 /* 当有任意弹窗被激活时，锁定网页主体的滚动条 */
