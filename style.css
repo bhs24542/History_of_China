@@ -125,7 +125,7 @@ body {
     padding-bottom: 60px; 
 }
 
-/* 整个时间轴最后一条收尾间距 */
+/* 收尾间距 */
 .theme-modern .timeline-item:last-child {
     padding-bottom: 30px; 
 }
@@ -141,7 +141,7 @@ body {
     box-shadow: 0 0 0 4px var(--bg-color); 
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     z-index: 2;
-    will-change: transform; /* 新增：提示浏览器提前提升渲染层，消除亚像素抖动 */
+    will-change: transform; /* 提示浏览器提前提升渲染层，消除亚像素抖动 */
 }
 
 .timeline-item .lead-line {
@@ -170,7 +170,6 @@ body {
     color: var(--theme-color); 
 }
 .timeline-item .time {
-    /* 修改项 3：时间文本全部替换为 Cinzel */
     font-family: 'Cinzel', serif;
     font-size: 15px;
     color: var(--text-sec);
@@ -189,7 +188,6 @@ body {
 .timeline-item .read-more {
     display: inline-block;
     margin-top: 14px;
-    /* 修改项 3：Read More 文本全部替换为 Cinzel */
     font-family: 'Cinzel', serif;
     font-size: 14px;
     font-weight: 700;
@@ -220,7 +218,7 @@ body {
 }
 
 /* =========================================
-   纯 CSS 弹窗交互 (无 JS)
+   CSS 弹窗交互
 ========================================= */
 .modal-overlay {
     position: fixed;
