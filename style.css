@@ -18,7 +18,7 @@
 body {
     background-color: var(--bg-color);
     color: var(--text-main);
-    /* 全局主字体 Cormorant */
+    /* 全局字体 */
     font-family: 'Cormorant', 'Georgia', serif;
     line-height: 1.6;
     overflow-x: hidden;
