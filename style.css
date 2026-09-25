@@ -82,10 +82,10 @@ body {
 ========================================= */
 .timeline-section {
     position: relative;
-    padding-left: 80px;  /* 给粗轴和引出线留出空间 */
+    padding-left: 80px;  
 }
 
-/* 巧妙修改 2：给第一个板块增加 padding-top 即可让第一截粗轴留出完美的顶部引导线距离 */
+/* 给第一个板块增加 padding-top 让第一截粗轴留出顶部引导线距离 */
 .theme-prehistoric { 
     --theme-color: var(--color-prehistoric); 
     padding-top: 7px; /* 让首个节点自然向下偏移，不再紧贴时间轴顶部圆头 */
@@ -118,11 +118,11 @@ body {
 .transition-modern { background: linear-gradient(to bottom, var(--color-imperial) 0%, var(--color-modern) 80px, var(--color-modern) 100%); }
 
 /* =========================================
-   条目样式 (无框线画卷排版，完美等距)
+   条目样式
 ========================================= */
 .timeline-item {
     position: relative;
-    padding-bottom: 60px; /* 使用 padding 替代 margin 撑开距离，完美闭合轴线 */
+    padding-bottom: 60px; 
 }
 
 /* 整个时间轴最后一条收尾间距 */
