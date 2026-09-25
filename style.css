@@ -42,7 +42,7 @@ body {
 }
 
 /* =========================================
-   前言、结语与时间轴小标题 (独立居中，格式完全统一)
+   前言、结语与时间轴小标题
 ========================================= */
 .preface, .epilogue {
     max-width: 600px;
@@ -52,7 +52,7 @@ body {
 }
 .chronicles-title {
     text-align: center;
-    margin-bottom: 40px; /* 调整与时间轴主体的呼吸感间距 */
+    margin-bottom: 40px; 
     padding: 0 20px;
 }
 .preface h1, .epilogue h1, .chronicles-title h1 {
